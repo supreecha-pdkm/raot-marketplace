@@ -1,0 +1,220 @@
+@import "tailwindcss";
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: 'Sarabun', sans-serif;
+  background-color: #f5f5f5;
+  margin: 0;
+}
+
+/* Ant Design sider fix */
+.ant-layout-sider {
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #f1f1f1; }
+::-webkit-scrollbar-thumb { background: #b0b0b0; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #888; }
+
+/* Page animation */
+.page-content {
+  animation: fadeIn 0.25s ease-in-out;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Stat card accents */
+.stat-primary { border-left: 4px solid #1a7c3e; }
+.stat-blue    { border-left: 4px solid #1677ff; }
+.stat-orange  { border-left: 4px solid #fa8c16; }
+.stat-purple  { border-left: 4px solid #722ed1; }
+.stat-cyan    { border-left: 4px solid #13c2c2; }
+
+/* EUDR badge */
+.badge-eudr {
+  background: linear-gradient(135deg, #52c41a, #1a7c3e);
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* Remove default button shadows */
+.ant-btn,
+.ant-btn:hover,
+.ant-btn:focus,
+.ant-btn:active {
+  box-shadow: none !important;
+}
+
+/* Countdown blink */
+.countdown-warn { color: #ff4d4f; animation: blink 1s step-start infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+
+/* Keep Input / InputNumber addon text (e.g. "฿/กก.", "กก.") on a single line
+   even inside narrow form columns. Without this, short Thai unit strings wrap
+   and double the control height.
+   AntD v6 uses `.ant-input-number-addon` (dropped the `-group-` prefix in v5);
+   Input still uses `.ant-input-group-addon`. We target both plus the legacy v5
+   selector so the rule stays robust across version bumps. */
+.ant-input-number-addon,
+.ant-input-number-group-addon,
+.ant-input-group-addon {
+  white-space: nowrap !important;
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   MOBILE RESPONSIVE OVERRIDES (≤ 767px)
+   ─────────────────────────────────────────────────────────────────
+   The desktop layout is built with hardcoded widths (Selects, Modals,
+   Cards, Tables) and inline styles. These media queries soften those
+   defaults so every page in the app degrades gracefully on phones
+   without each page having to opt in.
+   ─────────────────────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  /* Tighten card padding on small screens */
+  .page-content .ant-card-body { padding: 12px !important; }
+  .page-content .ant-card-head { padding: 0 12px !important; min-height: 44px; }
+  .page-content .ant-card-head-title { padding: 10px 0 !important; font-size: 14px; }
+  .page-content .ant-card-extra { padding: 8px 0 !important; }
+
+  /* Make AntD Tables horizontally scrollable so columns never compress
+     into illegible widths. Pages can still set a fixed scroll.x for finer
+     control, but this guarantees a sane default. */
+  .page-content .ant-table-wrapper { overflow-x: auto; }
+  .page-content .ant-table { min-width: 0; }
+  .page-content .ant-table-content { overflow-x: auto; }
+
+  /* Compact pagination row */
+  .page-content .ant-pagination .ant-pagination-options { display: none; }
+
+  /* Modal: full-bleed on mobile, ignore desktop-fixed widths */
+  .ant-modal {
+    max-width: calc(100vw - 16px) !important;
+    margin: 8px auto !important;
+    top: 8px !important;
+  }
+  .ant-modal-content { padding: 16px !important; }
+  .ant-modal-header { margin-bottom: 12px !important; }
+
+  /* Drawer should never exceed viewport */
+  .ant-drawer-content-wrapper { max-width: 100vw !important; }
+
+  /* Reset hardcoded widths on Selects / DatePickers / InputNumber within
+     filter rows. Pages set width: 200, 220, etc. — on mobile we want them
+     to fill their column. */
+  .page-content .ant-select,
+  .page-content .ant-picker,
+  .page-content .ant-input-number,
+  .page-content .ant-cascader-picker {
+    max-width: 100% !important;
+  }
+
+  /* Filter rows: each filter wraps to its own line on mobile */
+  .page-content .ant-row > .ant-col { min-width: 0; }
+
+  /* Horizontal Menus (page-level tabs) — let them scroll instead of wrap */
+  .page-content .ant-menu-horizontal {
+    overflow-x: auto;
+    overflow-y: hidden;
+    flex-wrap: nowrap !important;
+    white-space: nowrap;
+  }
+  .page-content .ant-menu-horizontal::-webkit-scrollbar { height: 0; }
+
+  /* Segmented controls — allow horizontal scroll on overflow */
+  .page-content .ant-segmented {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  /* Tabs: smaller padding */
+  .page-content .ant-tabs-tab { padding: 8px 10px !important; }
+
+  /* Form: stack labels above controls on mobile (when used inline) */
+  .page-content .ant-form-inline .ant-form-item {
+    margin-right: 0 !important;
+    margin-bottom: 8px !important;
+    width: 100%;
+  }
+
+  /* Descriptions: switch to one-column layout */
+  .page-content .ant-descriptions-row > th,
+  .page-content .ant-descriptions-row > td {
+    display: block !important;
+    width: 100% !important;
+  }
+
+  /* Statistic: reduce title/value gap */
+  .page-content .ant-statistic-title { font-size: 12px; }
+  .page-content .ant-statistic-content { font-size: 18px; }
+
+  /* Steps — switch to vertical on mobile via attribute trick: AntD already
+     supports `direction="vertical"`; we let pages set this. As a fallback,
+     let Steps overflow horizontally instead of wrapping awkwardly. */
+  .page-content .ant-steps:not(.ant-steps-vertical) {
+    overflow-x: auto;
+  }
+
+  /* Buttons in card extras — smaller */
+  .page-content .ant-card-extra .ant-btn {
+    padding: 0 6px !important;
+    font-size: 12px !important;
+  }
+}
+
+/* Slightly tighter spacing on tablets too */
+@media (min-width: 768px) and (max-width: 991px) {
+  .page-content .ant-card-body { padding: 16px !important; }
+}
+
+/* ─── Officer Dashboard Quick Access card ─────────────────────────────────
+   Editorial-style nav cards: subtle green left-border slides in on hover,
+   icon background fills, arrow shifts right. Designed to feel like a
+   control-room button rather than a generic clickable Card. */
+.raot-quick-card {
+  position: relative;
+}
+.raot-quick-card__accent {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: #1a7c3e;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.raot-quick-card:hover {
+  border-color: #1a7c3e !important;
+  box-shadow: 0 6px 18px -8px rgba(15, 61, 34, 0.25);
+  transform: translateY(-1px);
+}
+.raot-quick-card:hover .raot-quick-card__accent {
+  transform: scaleY(1);
+}
+.raot-quick-card:hover .raot-quick-card__icon {
+  background: #1a7c3e !important;
+  color: #ffffff !important;
+}
+.raot-quick-card:hover .raot-quick-card__arrow {
+  color: #1a7c3e !important;
+  transform: translateX(2px);
+}
+.raot-quick-card:focus-visible {
+  outline: 2px solid #1a7c3e;
+  outline-offset: 2px;
+}
