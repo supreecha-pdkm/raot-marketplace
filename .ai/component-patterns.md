@@ -31,11 +31,6 @@ pending: "รอดำเนินการ",
 rejected: "ปฏิเสธ",
 }
 
-// Rules:
-// - className prop always last, always optional
-// - Constants defined after component, not before
-// - Status maps use object lookup, not switch/if chains
-
 ---
 
 ## 2. Component with AntD + Tailwind
@@ -102,11 +97,6 @@ return (
 )
 }
 
-// Rules:
-// - Always handle loading / error / empty — never assume data exists
-// - key on every list item — never use index
-// - Split skeleton, error, empty into separate components when complex
-
 ---
 
 ## 4. Form Pattern
@@ -148,12 +138,6 @@ status={fieldState.error ? "error" : undefined}
 )
 }
 
-// Rules:
-// - zodResolver connects Zod schema to React Hook Form
-// - Controller wraps every AntD input
-// - Error message always below input, text-sm text-error
-// - Never use AntD Form — use native form + React Hook Form
-
 ---
 
 ## 5. Permission-Gated Component
@@ -173,11 +157,6 @@ return (
 </div>
 )
 }
-
-// Rules:
-// - Always use <Can> for permission gates — never if(role === x)
-// - Wrap smallest possible element, not entire sections
-// - Server: getServerAbility() then ability.can("action", "Subject")
 
 ---
 
@@ -202,13 +181,6 @@ return (
 </div>
 )
 }
-
-// Rules:
-// - Dashboard routes: app/(dashboard)/buyer/ and app/(dashboard)/seller/
-// - Auth routes: app/(auth)/
-// - Default export for pages only
-// - No data fetching in pages — delegate to feature components
-// - No business logic — layout and composition only
 
 ---
 
@@ -245,7 +217,3 @@ className
 )
 }
 
-// Rules:
-// - Shared components: zero feature imports
-// - Always accept className prop
-// - Composition via children or render props — not feature-specific props

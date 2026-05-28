@@ -80,14 +80,4 @@
 - Section gap: `gap-6`
 - Icon-to-label: `gap-2`
 
----
-
-## Hard Rules
-
-- Never hardcode hex — use token classes
-- Never arbitrary values: `text-[#2e7d32]` → `text-primary-500`
-- Tailwind → layout, spacing, utilities
-- AntD → complex component UI
-- cn() for all conditional class logic
-- Semantic tokens for status (success/warning/error/info)
-- Spacing: 4px grid only (p-1 through p-16)
+> Rules: see .ai/project-context.md Hard Rules

@@ -116,7 +116,3 @@ lib/              → infrastructure singletons (no React, no business logic)
 - Zod schemas → derive types with z.infer<>
 - cn() for all conditional class logic
 
-## Built So Far
-
-- Auth: login page ✅, layout ✅
-- Dashboard: header ✅ (language switcher · text scale · notifications · user menu), layout ⬜

@@ -20,12 +20,6 @@ Client Component
 → API response
 → React Query caches result
 
-Never:
-
-- Call axios directly in components
-- Fetch in useEffect
-- Put service logic inside hooks
-
 ## 3. Auth Flow
 
 Login form (UI only)
@@ -42,12 +36,6 @@ Token refresh:
 → Retries original request
 → On refresh failure → signOut()
 
-Never:
-
-- Store tokens in localStorage
-- Read tokens outside Auth.js session
-- Check roles ad-hoc — always go through CASL
-
 ## 4. Authorization Flow
 
 Role sourced from session.user.role (set by Auth.js callback)
@@ -56,25 +44,9 @@ Role sourced from session.user.role (set by Auth.js callback)
 → Client: useAbility() or <Can> component
 → Server: getServerAbility() from @/lib/casl/server
 
-Never:
+## 5. Data Flow Rules
 
-- Import @/lib/casl/server in client components
-- Re-derive role checks with if(role === "buyer")
-- Duplicate permission logic across features
-
-## 5. State Ownership Map
-
-Who owns what:
-
-Server data → React Query (fetched, cached, synced)
-Auth session → Auth.js (single source of truth)
-Permissions → CASL (derived from session role)
-URL/filters → nuqs (shareable, bookmarkable)
-Global UI → Zustand (modals, sidebar, preferences)
-Form data → React Hook Form + Zod
-Local UI → useState (last resort, non-shareable)
-
-## 6. Data Flow Rules
+> State ownership: see .ai/project-context.md State Rules
 
 - Server components fetch via auth() + direct service calls
 - Client components fetch via React Query hooks only
@@ -82,7 +54,7 @@ Local UI → useState (last resort, non-shareable)
 - Zustand stores UI state only — never server response data
 - nuqs for any state that should survive page refresh
 
-## 7. Provider Order
+## 6. Provider Order
 
 app/layout.tsx wraps in this order:
 SessionProvider → AbilityProvider → ReactQueryProvider
