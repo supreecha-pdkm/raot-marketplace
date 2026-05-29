@@ -26,7 +26,7 @@ const theme: ThemeConfig = {
     colorFillSecondary: "#f8fafc",
 
     fontFamily: "Sarabun, sans-serif",
-    fontSize: 16,
+    fontSize: 14,
     lineHeight: 1.5,
 
     borderRadius: 8,
