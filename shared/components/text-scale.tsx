@@ -90,5 +90,16 @@ export function withTextScale(base: ThemeConfig, scale: number): ThemeConfig {
       fontSizeHeading4: scaled(base.token?.fontSizeHeading4),
       fontSizeHeading5: scaled(base.token?.fontSizeHeading5),
     },
+    components: {
+      ...base.components,
+      Menu: {
+        ...base.components?.Menu,
+        fontSize: scaled(base.components?.Menu?.fontSize),
+      },
+      Breadcrumb: {
+        ...base.components?.Breadcrumb,
+        fontSize: scaled(base.components?.Breadcrumb?.fontSize),
+      },
+    },
   };
 }

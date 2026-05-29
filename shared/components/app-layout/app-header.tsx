@@ -381,7 +381,6 @@ export function AppHeader({
 
         <nav aria-label="เส้นทางหน้า" className="hidden min-w-0 md:block">
           <Breadcrumb
-            className="text-xs"
             items={breadcrumbs.map(({ key, title }) => ({ key, title }))}
           />
         </nav>

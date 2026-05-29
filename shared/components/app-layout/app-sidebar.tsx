@@ -60,7 +60,7 @@ function SidebarBrand({ collapsed, role }: { collapsed: boolean; role: Role }) {
     <Link
       href={`/${role}/dashboard`}
       className={cn(
-        "flex h-16 items-center gap-3 border-b border-white/10 px-5 transition-all",
+        "flex h-14 items-center gap-3 border-b border-white/10 px-5 transition-all",
         collapsed && "justify-center px-2",
       )}
       aria-label="กลับสู่หน้าหลัก"
@@ -109,7 +109,7 @@ function SidebarBody({
 
       <nav
         aria-label="เมนูหลัก"
-        className="min-h-0 flex-1 overflow-x-hidden overflow-y-auto py-2"
+        className="min-h-0 flex-1 overflow-x-hidden overflow-y-auto"
       >
         <Menu
           theme="dark"

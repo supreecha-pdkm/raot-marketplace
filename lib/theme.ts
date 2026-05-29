@@ -49,6 +49,8 @@ const theme: ThemeConfig = {
       bodyBg: "#f8fafc",
     },
     Menu: {
+      fontSize: 13,
+      itemHeight: 40,
       itemSelectedBg: "#e8f5e9",
       itemSelectedColor: "#1b5e20",
       darkItemBg: "transparent",
@@ -59,6 +61,9 @@ const theme: ThemeConfig = {
       darkItemSelectedBg: "#2e7d32",
       darkItemSelectedColor: "#ffffff",
       darkGroupTitleColor: "rgba(165,214,167,0.7)",
+    },
+    Breadcrumb: {
+      fontSize: 13,
     },
     Modal: {
       borderRadiusLG: 24,
